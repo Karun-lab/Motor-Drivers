@@ -2,11 +2,11 @@ import pygame
 import serial
 import numpy as np
 
-sabertooth = serial.Serial(port='COM8', timeout=0)
-sabertooth.baudrate = 9600 # set Baud rate to 9600
-sabertooth.bytesize = 8    # Number of data bits = 8
-sabertooth.parity   ='N'    # No parity
-sabertooth.stopbits = 1     # Number of Stop bits = 1
+smartElex = serial.Serial(port='COM8', timeout=0)
+smartElex.baudrate = 9600 # set Baud rate to 9600
+smartElex.bytesize = 8    # Number of data bits = 8
+smartElex.parity   ='N'    # No parity
+smartElex.stopbits = 1     # Number of Stop bits = 1
 
 # Define some colors.
 BLACK = pygame.Color('white')
@@ -102,10 +102,10 @@ while not done:
         axis3 = joystick.get_axis(3)
         textPrint.tprint(screen, "Axis 4 Steer: {: .1f}".format(axis3))
 
-        if 0.1< axis3:   sabertooth.write(forward), print(forward)
+        if 0.1< axis3:   smartElex.write(forward), print(forward)
 
-        if -0.1> axis3:   sabertooth.write(back), print(back)
-        else :   sabertooth.write(stop)
+        if -0.1> axis3:   smartElex.write(back), print(back)
+        else :   smartElex.write(stop)
 
         textPrint.tprint(screen, "")
 
